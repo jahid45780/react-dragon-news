@@ -5,6 +5,8 @@ import Login from "../Peges/Login/Login";
 import Register from "../Peges/Shared/Register/Register";
 import News from "../Peges/News/News";
 import PrivateRoute from "./PrivateRoute";
+import About from "../Peges/About/About";
+import Career from "../Peges/Career/Career";
 
 
 const router = createBrowserRouter([
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
             {
                 path:'/register',
                 element: <Register></Register>
+            },
+            {
+                path:'/about',
+                element: <About></About>
+            },
+            {
+                path:'/career',
+                element: <Career></Career>
             }
             
         ]

@@ -1,15 +1,54 @@
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { AiFillGoogleCircle,AiFillGithub,AiOutlineFacebook,AiOutlineTwitter,AiOutlineInstagram } from "react-icons/ai";
+import app from "../../../firebase/firebase.config";
+import { useState } from "react";
 
 const RightSideNav = () => {
+    const [user, setUser]= useState(null)
+    const auth = getAuth(app)
+    const provider = new GoogleAuthProvider()
+    const GitHupProvider = new GithubAuthProvider()
+
+
+      const handleGoogleSingIn = ()=>{
+          signInWithPopup(auth,provider)
+          .then(result => {
+            const logInUser = result.user
+            console.log(logInUser)
+            setUser(logInUser)
+          })
+          .catch(error =>{
+            console.error(error.message)
+          })
+
+      }
+
+      const handleGitHubSingIn = ()=>{
+        signInWithPopup(auth,GitHupProvider)
+        .then(result=>{
+            const logInUser = result.user
+            console.log(logInUser)
+            setUser(logInUser)
+        })
+
+        .catch(error=>{
+            console.error(error)
+        })
+      }
+
     return (
         <div>
             <div className=" p-4 space-y-3 mb-6 " >
                 <h2 className=" text-3xl" >Login With</h2>
-                <button className="btn btn-outline w-full ">
+                { user && <div className=" flex items-center" >
+                    <h2 className=" text-xl text-green-600" > {user.displayName} </h2>
+                    <img className=" rounded-full" src={ user.photoURL } alt="" />
+                </div> }
+                <button onClick={ handleGoogleSingIn} className="btn btn-outline w-full ">
                     <AiFillGoogleCircle className=" text-xl" ></AiFillGoogleCircle>
                     Google
                 </button>
-                <button className="btn btn-outline w-full ">
+                <button onClick={ handleGitHubSingIn } className="btn btn-outline w-full ">
                     <AiFillGithub  className=" text-xl" ></AiFillGithub>
                     GitHup
                 </button>

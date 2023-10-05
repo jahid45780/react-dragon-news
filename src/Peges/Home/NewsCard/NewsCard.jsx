@@ -20,7 +20,7 @@ const NewsCard = ({news}) => {
           
     </div>
   </div>
-</div>
+</div>  
 
 
     );

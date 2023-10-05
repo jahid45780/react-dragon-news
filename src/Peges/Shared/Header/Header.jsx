@@ -58,7 +58,7 @@ const Header = () => {
       </label>
           {
             user ? 
-            <button onClick={handleSingOut} className=" btn" >Sing Out</button>
+            <button onClick={handleSingOut} className=" btn" >Log Out</button>
             :
             <Link to='/login' >
     
