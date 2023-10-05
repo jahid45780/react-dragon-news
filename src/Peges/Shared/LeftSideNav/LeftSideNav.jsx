@@ -12,8 +12,8 @@ const LeftSideNav = () => {
         .then(data=> setCategories(data))
     },[])
     return (
-        <div className=" space-y-5">
-            <h2 className=" text-2xl"> All Categories </h2>
+        <div className=" grid grid-cols-2 md:grid-cols-1 lg:grid-cols-1 space-y-5">
+            <h2 className="  text-2xl"> All Categories </h2>
             {
                 categories.map(category =>
                  <Link className=" block ml-3 font-semibold text-xl px-4 "

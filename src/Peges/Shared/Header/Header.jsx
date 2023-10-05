@@ -1,6 +1,20 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 const Header = () => {
+
+  const {user, logOut}= useContext(AuthContext)
+
+  const handleSingOut = () =>{
+         logOut()
+         .then(result =>{
+          alert('You logOut now', result.user)
+         })
+         .catch(error =>{
+          console.error(error)
+         })
+  }
 
     const navLinks = <>
       
@@ -42,14 +56,20 @@ const Header = () => {
           <img src="https://i.ibb.co/LzVv8f2/user.png" />
         </div>
       </label>
-
-
-
-    <Link to='/login' >
+          {
+            user ? 
+            <button onClick={handleSingOut} className=" btn" >Sing Out</button>
+            :
+            <Link to='/login' >
     
-    <button className=" btn" >Login</button>
+            <button className=" btn" >Login</button>
+            
+            </Link>
+
+          }
+
+
     
-    </Link>
   
   </div>
 </div> 
